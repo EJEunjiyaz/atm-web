@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <title>Customer</title>
 </head>
+
 <body>
+
+<h1>Register Customer</h1>
+<form method="POST" th:action="@{/customer}">
+
+    <label for="inputId">Id</label>
+    <input id="inputId" name="id" type="input">
+
+    <label for="inputName">Name</label>
+    <input id="inputName" name="name" type="input">
+
+    <label for="inputPin">Pin</label>
+    <input id="inputPin" name="pin" type="password">
+
+    <input type="submit">
+</form>
+<hr>
+
 <h1>All Customers</h1>
 
 <table border="1px">
