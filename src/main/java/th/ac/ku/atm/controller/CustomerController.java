@@ -5,23 +5,31 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.RequestMapping;
+import th.ac.ku.atm.model.Customer;
+import th.ac.ku.atm.service.CustomerService;
 
 @Controller
+@RequestMapping("/customer")
 public class CustomerController {
-    ArrayList<Customer> customers = new ArrayList<>();
+    private final CustomerService customerService;
 
-    @GetMapping("/customer")
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    //    0. handle user request
+    @GetMapping
     public String getCustomerPage(Model model) {
-        model.addAttribute("allCustomers", customers);
+//        2. update model for template
+        model.addAttribute("allCustomers", customerService.getCustomers());
         return "customer";  // customer.html
     }
 
-    @PostMapping("/customer")
+    @PostMapping
     public String registerCustomer(@ModelAttribute Customer customer, Model model) {
-        customers.add(customer);
-        model.addAttribute("allCustomers", customers);
+        customerService.createCustomer(customer);
+        model.addAttribute("allCustomers", customerService.getCustomers());
         return "redirect:customer";
     }
 }
