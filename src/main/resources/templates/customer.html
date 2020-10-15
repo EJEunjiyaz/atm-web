@@ -3,44 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Customer</title>
+    <link th:href="@{css/bootstrap.min.css}" th:rel="stylesheet">
 </head>
-
 <body>
 
-<h1>Register Customer</h1>
-<form method="POST" th:action="@{/customer}">
+<div class="container">
+    <h1>Register Customer</h1>
+    <form action="#" method="POST" th:action="@{/customer}">
+        <div class="form-group">
+            <label for="inputId">Id</label>
+            <input class="form-control" id="inputId" name="id" type="input">
+        </div>
 
-    <label for="inputId">Id</label>
-    <input id="inputId" name="id" type="input">
+        <div class="form-group">
+            <label for="inputName">Name</label>
+            <input class="form-control" id="inputName" name="name" type="input">
+        </div>
 
-    <label for="inputName">Name</label>
-    <input id="inputName" name="name" type="input">
+        <div class="form-group">
+            <label for="inputPin">Pin</label>
+            <input class="form-control" id="inputPin" name="pin" type="password">
+        </div>
 
-    <label for="inputPin">Pin</label>
-    <input id="inputPin" name="pin" type="password">
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit">
+        </div>
+    </form>
 
-    <input type="submit">
-</form>
-<hr>
-
-<h1>All Customers</h1>
-
-<table border="1px">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Pin</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="customer : ${allCustomers}">
-        <td th:text="${customer.id}"></td>
-        <td th:text="${customer.name}"></td>
-        <td th:text="${customer.pin}"></td>
-    </tr>
-    </tbody>
-</table>
+    <hr>
+    <h1>All Customers</h1>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Pin</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer : ${allCustomers}">
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.pin}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>
