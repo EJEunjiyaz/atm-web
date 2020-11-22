@@ -4,36 +4,36 @@
       xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
 <div class="container" layout:fragment="content">
+
     <h1>Open Bank Account</h1>
-    <form action="#" method="POST" th:action="@{/bankaccount}">
-        <div class="form-group">
-            <label for="inputId">Id</label>
-            <input class="form-control" id="inputId" name="id" type="input">
-        </div>
+    <form method="POST" th:action="@{/bankaccount}">
 
         <div class="form-group">
-            <label for="inputCustomerId">Customer Id</label>
-            <input class="form-control" id="inputCustomerId" name="customerId" type="input">
+            <label for="inputCustomer">Customer Id</label>
+            <input class="form-control" id="inputCustomer" name="customerId" type="text">
         </div>
 
         <div class="form-group">
             <label for="inputType">Type</label>
-            <input class="form-control" id="inputType" name="type" type="input">
+            <input class="form-control" id="inputType" name="type" type="text">
         </div>
 
         <div class="form-group">
             <label for="inputBalance">Balance</label>
-            <input class="form-control" id="inputBalance" name="balance" type="input">
+            <input class="form-control" id="inputBalance" name="balance" type="text">
         </div>
 
         <div class="form-group">
             <input class="btn btn-primary" type="submit">
         </div>
-    </form>
 
+    </form>
     <hr>
-    <table class="table table-bordered">
-        <thead class="thead-dark">
+
+    <h1>All Bank Accounts</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-light">
         <tr>
             <th>Id</th>
             <th>CustomerId</th>
@@ -42,11 +42,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="bankaccount : ${allBankAccounts}">
-            <td th:text="${bankaccount.id}"></td>
-            <td th:text="${bankaccount.customerId}"></td>
-            <td th:text="${bankaccount.type}"></td>
-            <td th:text="${bankaccount.balance}"></td>
+        <tr th:each="account : ${bankaccounts}">
+            <td th:text="${account.id}"></td>
+            <td th:text="${account.customerId}"></td>
+            <td th:text="${account.type}"></td>
+            <td th:text="${account.balance}"></td>
         </tr>
         </tbody>
     </table>
