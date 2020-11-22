@@ -15,7 +15,7 @@ import th.ac.ku.atm.service.CustomerService;
 public class LoginController {
 
     private final CustomerService customerService;
-    private BankAccountService bankAccountService;
+    private final BankAccountService bankAccountService;
 
     public LoginController(CustomerService customerService, BankAccountService bankAccountService) {
         this.customerService = customerService;
