@@ -54,4 +54,11 @@ public class BankAccountService {
         String url = "http://localhost:8091/api/bankaccount/" + id;
         restTemplate.delete(url, id);
     }
+
+    public void adjustMoney(BankAccount bankAccount, double amount) {
+        String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
+        double balance = bankAccount.getBalance();
+        bankAccount.setBalance(balance + amount);
+        restTemplate.put(url, bankAccount);
+    }
 }

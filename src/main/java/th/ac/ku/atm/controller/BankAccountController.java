@@ -52,4 +52,38 @@ public class BankAccountController {
         model.addAttribute("bankaccounts", bankAccountService.getBankAccounts());
         return "redirect:/bankaccount";
     }
+
+    @GetMapping("/deposit/{id}")
+    public String getDepositMoneyPage(@PathVariable int id, Model model) {
+        BankAccount bankAccount = bankAccountService.getBankAccount(id);
+        model.addAttribute("bankAccount", bankAccount);
+        return "bankaccount-deposit";
+    }
+
+    @PostMapping("/deposit/{id}")
+    public String depositMoney(@PathVariable int id,
+                               @ModelAttribute BankAccount bankAccount,
+                               @RequestParam(value = "inputAmount") double amount,
+                               Model model) {
+        bankAccountService.adjustMoney(bankAccount, amount);
+        model.addAttribute("bankaccounts", bankAccountService.getBankAccounts());
+        return "redirect:/bankaccount";
+    }
+
+    @GetMapping("/withdraw/{id}")
+    public String getWithdrawMoneyPage(@PathVariable int id, Model model) {
+        BankAccount bankAccount = bankAccountService.getBankAccount(id);
+        model.addAttribute("bankAccount", bankAccount);
+        return "bankaccount-withdraw";
+    }
+
+    @PostMapping("/withdraw/{id}")
+    public String withdrawMoney(@PathVariable int id,
+                                @ModelAttribute BankAccount bankAccount,
+                                @RequestParam(value = "inputAmount") double amount,
+                                Model model) {
+        bankAccountService.adjustMoney(bankAccount, -amount);
+        model.addAttribute("bankaccounts", bankAccountService.getBankAccounts());
+        return "redirect:/bankaccount";
+    }
 }
